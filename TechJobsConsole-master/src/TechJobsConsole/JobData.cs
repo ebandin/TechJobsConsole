@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -137,6 +137,27 @@ namespace TechJobsConsole
             valueBuilder.Clear();
 
             return rowValues.ToArray();
+        }
+
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            LoadData();
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            foreach (Dictionary<string, string> job in AllJobs)
+            {
+                string newValue = job[value];
+                foreach (KeyValuePair<string, string> detail in job)
+                {
+         
+
+                    if (newValue.Contains(value))
+                    {
+                        jobs.Add(job);
+                    }
+                }
+                
+            }
+            return jobs; 
         }
     }
 }
